@@ -39,9 +39,9 @@ function api(k, id, b, U, sid) {
   
   switch (k) {
     case 'GET equipos': return q('SELECT * FROM equipos ORDER BY id');
-    case 'POST equipos': return { id: ex(INSERT INTO equipos() VALUES(), ...EQK.map(c => b[c] ?? '')) };
-    case 'PUT equipos': ex(UPDATE equipos SET  WHERE id=?, ...EQK.map(c => b[c] ?? ''), id); return { ok: 1 };
-    case 'DELETE equipos': ['incidencias', 'registros'].forEach(t => ex(DELETE FROM  WHERE equipo_id=?, id)); ex('DELETE FROM equipos WHERE id=?', id); return { ok: 1 };
+    case 'POST equipos': return { id: ex('INSERT INTO equipos(' + EQK.join(',') + ') VALUES(' + EQK.map(() => '?').join(',') + ')', ...EQK.map(c => b[c] ?? '')) };
+    case 'PUT equipos': ex('UPDATE equipos SET ' + EQK.map(c => c + '=?').join(',') + ' WHERE id=?', ...EQK.map(c => b[c] ?? ''), id); return { ok: 1 };
+    case 'DELETE equipos': ['incidencias', 'registros'].forEach(t => ex('DELETE FROM ' + t + ' WHERE equipo_id=?', id)); ex('DELETE FROM equipos WHERE id=?', id); return { ok: 1 };
     case 'GET incidencias': return q('SELECT i.*, e.nombre equipo FROM incidencias i LEFT JOIN equipos e ON e.id=i.equipo_id ORDER BY i.id DESC');
     case 'POST incidencias': return { id: ex('INSERT INTO incidencias(equipo_id,titulo,descripcion,prioridad,fecha,autor) VALUES(?,?,?,?,?,?)', b.equipo_id, b.titulo, b.descripcion || '', b.prioridad || 'Media', hoy(), U) };
     case 'PUT incidencias': ex('UPDATE incidencias SET estado=? WHERE id=?', b.estado, id); return { ok: 1 };
@@ -65,7 +65,7 @@ http.createServer((req, res) => {
   const ck = /sid=(\w+)/.exec(req.headers.cookie || '');
   const hdr = {};
   let sid = ck ? ck[1] : crypto.randomBytes(16).toString('hex');
-  if (!ck) hdr['Set-Cookie'] = sid=; Path=/; HttpOnly;
+  if (!ck) hdr['Set-Cookie'] = 'sid=' + sid + '; Path=/; HttpOnly';
   
   if (url.startsWith('/api/')) {
     let raw = '';
@@ -91,4 +91,4 @@ http.createServer((req, res) => {
   const ext = path.extname(filePath);
   res.writeHead(200, { ...hdr, 'Content-Type': MIME[ext] || 'text/plain' });
   res.end(fs.readFileSync(filePath));
-}).listen(PORT, () => console.log(>>> Servidor listo en puerto ));
+}).listen(PORT, () => console.log('>>> Servidor listo en puerto ' + PORT));
