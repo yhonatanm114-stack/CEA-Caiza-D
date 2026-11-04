@@ -40,7 +40,7 @@ function api(k, id, b, U, sid) {
     case 'POST incidencias': return { id: ex('INSERT INTO incidencias(equipo_id,titulo,descripcion,prioridad,fecha,autor) VALUES(?,?,?,?,?,?)', b.equipo_id, b.titulo, b.descripcion || '', b.prioridad || 'Media', hoy(), U) };
     case 'PUT incidencias': ex('UPDATE incidencias SET estado=? WHERE id=?', b.estado, id); return { ok: 1 };
     case 'DELETE incidencias': ex('DELETE FROM incidencias WHERE id=?', id); return { ok: 1 };
-    case 'GET registros': return q('SELECT r.*, e.nombre equipo FROM registros r LEFT JOIN equipos e ON e.id=r.equipo_id ORDER BY i.id DESC');
+    case 'GET registros': return q('SELECT r.*, e.nombre equipo FROM registros r LEFT JOIN equipos e ON e.id=r.equipo_id ORDER BY r.id DESC');
     case 'POST registros':
       ex('INSERT INTO registros(equipo_id,tipo,detalle,fecha,proximo,autor) VALUES(?,?,?,?,?,?)', b.equipo_id, b.tipo, b.detalle || '', hoy(), b.proximo || '', U);
       if (b.nuevo_estado) ex('UPDATE equipos SET estado=? WHERE id=?', b.nuevo_estado, b.equipo_id);
@@ -51,7 +51,7 @@ function api(k, id, b, U, sid) {
   return { error: 'Ruta no válida' };
 }
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript' };
 const PORT = process.env.PORT || 4500;
 
 http.createServer((req, res) => {
@@ -67,9 +67,7 @@ http.createServer((req, res) => {
     });
   }
 
-  let cleanPath = url === '/' ? 'index.html' : url.startsWith('/') ? url.slice(1) : url;
-  let filePath = path.join(__dirname, cleanPath);
-
+  let filePath = path.join(__dirname, url === '/' ? 'index.html' : url);
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     filePath = path.join(__dirname, 'index.html');
   }
@@ -77,4 +75,4 @@ http.createServer((req, res) => {
   const ext = path.extname(filePath);
   res.writeHead(200, { ...hdr, 'Content-Type': MIME[ext] || 'text/plain' });
   res.end(fs.readFileSync(filePath));
-}).listen(PORT, () => console.log(>>> Servidor en puerto ));
+}).listen(PORT, () => console.log(>>> Servidor listo en puerto ));
