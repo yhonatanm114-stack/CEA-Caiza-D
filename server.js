@@ -13,12 +13,10 @@ const hoy = () => new Date().toISOString().slice(0, 10);
 const q = (s, ...a) => db.prepare(s).all(...a);
 const ex = (s, ...a) => Number(db.prepare(s).run(...a).lastInsertRowid);
 
-db.exec(
-  CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, nombre TEXT, usuario TEXT UNIQUE, clave TEXT);
-  CREATE TABLE IF NOT EXISTS equipos(id INTEGER PRIMARY KEY, nombre TEXT, cpu TEXT DEFAULT '', monitor TEXT DEFAULT '', cortapico INT DEFAULT 1, mouse INT DEFAULT 1, teclado INT DEFAULT 1, parlante INT DEFAULT 1, audifono INT DEFAULT 1, estado TEXT DEFAULT 'Óptimo', notas TEXT DEFAULT '', ultimo_mant TEXT DEFAULT '');
-  CREATE TABLE IF NOT EXISTS incidencias(id INTEGER PRIMARY KEY, equipo_id INT, titulo TEXT, descripcion TEXT, prioridad TEXT, estado TEXT DEFAULT 'Abierta', fecha TEXT, autor TEXT);
-  CREATE TABLE IF NOT EXISTS registros(id INTEGER PRIMARY KEY, equipo_id INT, tipo TEXT, detalle TEXT, fecha TEXT, proximo TEXT, autor TEXT);
-);
+db.exec("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, nombre TEXT, usuario TEXT UNIQUE, clave TEXT);");
+db.exec("CREATE TABLE IF NOT EXISTS equipos(id INTEGER PRIMARY KEY, nombre TEXT, cpu TEXT DEFAULT '', monitor TEXT DEFAULT '', cortapico INT DEFAULT 1, mouse INT DEFAULT 1, teclado INT DEFAULT 1, parlante INT DEFAULT 1, audifono INT DEFAULT 1, estado TEXT DEFAULT 'Óptimo', notas TEXT DEFAULT '', ultimo_mant TEXT DEFAULT '');");
+db.exec("CREATE TABLE IF NOT EXISTS incidencias(id INTEGER PRIMARY KEY, equipo_id INT, titulo TEXT, descripcion TEXT, prioridad TEXT, estado TEXT DEFAULT 'Abierta', fecha TEXT, autor TEXT);");
+db.exec("CREATE TABLE IF NOT EXISTS registros(id INTEGER PRIMARY KEY, equipo_id INT, tipo TEXT, detalle TEXT, fecha TEXT, proximo TEXT, autor TEXT);");
 
 if (!q('SELECT 1 FROM users').length) {
   [['Yhonatan Soto Mamani', 'yhonatan', 'yhonatan2026'], ['Jose Luis Huanca Mamani', 'joseluis', 'joseluis2026']]
