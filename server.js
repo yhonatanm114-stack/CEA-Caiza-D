@@ -51,7 +51,7 @@ function api(k, id, b, U, sid) {
   return { error: 'Ruta no válida' };
 }
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg' };
 const PORT = process.env.PORT || 4500;
 
 http.createServer((req, res) => {
@@ -67,9 +67,12 @@ http.createServer((req, res) => {
     });
   }
 
-  let filePath = path.join(__dirname, url === '/' ? 'index.html' : url);
+  let cleanPath = url === '/' ? 'index.html' : url.startsWith('/') ? url.slice(1) : url;
+  let filePath = path.join(__dirname, cleanPath);
+
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(__dirname, 'index.html');
+    if (cleanPath === 'style.css') filePath = path.join(__dirname, 'css', 'style.css');
+    else filePath = path.join(__dirname, 'index.html');
   }
 
   const ext = path.extname(filePath);
