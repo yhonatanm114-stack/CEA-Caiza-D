@@ -1,0 +1,14 @@
+CEA Caiza D - Sistema de gestion de laboratorio
+
+REQUISITO: Node.js 22.5 o superior (https://nodejs.org)
+
+EJECUTAR:
+  Windows: doble clic en INICIAR.bat
+  Otros:   node server.js  y abrir http://localhost:3000
+
+Usuarios:
+  yhonatan / yhonatan2026
+  joseluis / joseluis2026
+
+Base de datos SQLite: archivo cea.db (se crea solo en esta carpeta).
+Se puede abrir con DB Browser for SQLite.
