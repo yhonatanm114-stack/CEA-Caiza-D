@@ -1,0 +1,10 @@
+﻿{
+  "name": "cea-caiza-d",
+  "version": "1.0.0",
+  "description": "Sistema de Gestion CEA Caiza D",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
