@@ -62,6 +62,7 @@ const MIME = {
   '.css': 'text/css', 
   '.js': 'text/javascript',
   '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
   '.png': 'image/png',
   '.gif': 'image/gif'
 };
