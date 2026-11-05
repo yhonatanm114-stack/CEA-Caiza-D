@@ -10,7 +10,7 @@
 <div id="login">
 <form class="box" onsubmit="return L(event)">
 <div style="margin-bottom:15px; display:flex; justify-content:center;">
-  <div style="width:140px; height:140px; border-radius:16px; overflow:hidden; box-shadow:0 6px 25px rgba(0,0,0,0.6); border:2px solid rgba(255,255,255,0.4); background:#fff; display:flex; align-items:center; justify-content:center; padding:6px;">
+  <div style="width:110px; height:110px; border-radius:14px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:2px solid rgba(255,255,255,0.3); background:#fff; display:flex; align-items:center; justify-content:center; padding:5px;">
     <img src="img/logo.jpg" alt="Logo CEA Caiza D" style="width:100%; height:100%; object-fit:contain;">
   </div>
 </div>
@@ -19,10 +19,10 @@
 <input id="u" placeholder="Usuario" required>
 <input id="p" type="password" placeholder="Contraseña" required>
 <button>Ingresar</button>
-<div id="err"></div>
+<div id="err" style="color:#f85149;font-size:13px;margin-top:10px;"></div>
 </form>
 </div>
-<div id="app">
+<div id="app" style="display:none;">
 <aside>
 <h2>&#128187; Lab. CEA Caiza D</h2>
 <button class="nav on" data-v="dash">&#128202; Dashboard</button>
@@ -30,13 +30,13 @@
 <button class="nav" data-v="inc">&#128680; Incidencias</button>
 <button class="nav" data-v="man">&#128295; Mantenimiento</button>
 <div style="flex:1"></div>
-<small id="who" style="color:var(--m)"></small>
+<small id="who" style="color:#8b949e"></small>
 <button class="g" onclick="reporte()">&#128196; Reporte PDF</button>
 <button class="g" onclick="api('logout','POST').then(()=>location.reload())">Cerrar sesión</button>
 </aside>
 <main id="main"></main>
 </div>
-<div id="mod" onclick="if(event.target==this)X()">
+<div id="mod" onclick="if(event.target==this)X()" style="display:none;">
 <div class="card" id="mc"></div>
 </div>
 <script src="js/jspdf.umd.min.js"></script>
