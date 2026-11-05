@@ -10,8 +10,8 @@
 <div id="login">
 <form class="box" onsubmit="return L(event)">
 <div style="margin-bottom:16px; display:flex; justify-content:center;">
-  <div style="width:110px; height:110px; border-radius:14px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:2px solid rgba(255,255,255,0.3); background:#fff; display:flex; align-items:center; justify-content:center; padding:5px;">
-    <img src="img/logo.jpg" alt="Logo CEA Caiza D" style="width:100%; height:100%; object-fit:contain;">
+  <div style="width:100px; height:100px; border-radius:50%; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:2px solid rgba(255,255,255,0.3); background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;">
+    <img src="data:image/jpeg;base64," alt="Logo CEA Caiza D" style="width:100%; height:100%; object-fit:contain;">
   </div>
 </div>
 <h1>CEA Caiza "D"</h1>
@@ -30,13 +30,13 @@
 <button class="nav" data-v="inc">&#128680; Incidencias</button>
 <button class="nav" data-v="man">&#128295; Mantenimiento</button>
 <div style="flex:1"></div>
-<small id="who" style="color:#8b949e"></small>
+<small id="who" style="color:var(--m)"></small>
 <button class="g" onclick="reporte()">&#128196; Reporte PDF</button>
 <button class="g" onclick="api('logout','POST').then(()=>location.reload())">Cerrar sesión</button>
 </aside>
 <main id="main"></main>
 </div>
-<div id="mod" onclick="if(event.target==this)X()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:1000">
+<div id="mod" onclick="if(event.target==this)X()">
 <div class="card" id="mc"></div>
 </div>
 <script src="js/jspdf.umd.min.js"></script>
