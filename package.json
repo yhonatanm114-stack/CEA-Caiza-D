@@ -1,8 +1,10 @@
 ﻿{
-  "name": "cea-caiza-d",
+  "name": "caboi",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js"
-  }
+  },
+  "dependencies": {}
 }
