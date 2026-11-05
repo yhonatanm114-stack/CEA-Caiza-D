@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CEA Caiza "D" &middot; Gesti&oacute;n de Laboratorio de Computacion</title>
+<title>CEA Caiza "D" &middot; Gestión de Laboratorio de Computacion</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="login">
 <form class="box" onsubmit="return L(event)">
-<div style="font-size:44px">&#128187;</div>
+<div style="margin-bottom:8px;"><img src="img/logo.jpg" alt="Logo CEA Caiza D" style="width:90px;height:90px;border-radius:50%;object-fit:cover;box-shadow:0 4px 15px rgba(0,0,0,0.4);border:2px solid rgba(255,255,255,0.2);"></div>
 <h1>CEA Caiza "D"</h1>
-<small>Gesti&oacute;n de incidencias, diagn&oacute;sticos y mantenimiento del laboratorio</small>
+<small>Gestión de incidencias, diagnósticos y mantenimiento del laboratorio</small>
 <input id="u" placeholder="Usuario" required>
-<input id="p" type="password" placeholder="Contrase&ntilde;a" required>
+<input id="p" type="password" placeholder="Contraseña" required>
 <button>Ingresar</button>
 <div id="err"></div>
 </form>
@@ -28,7 +28,7 @@
 <div style="flex:1"></div>
 <small id="who" style="color:var(--m)"></small>
 <button class="g" onclick="reporte()">&#128196; Reporte PDF</button>
-<button class="g" onclick="api('logout','POST').then(()=>location.reload())">Cerrar sesi&oacute;n</button>
+<button class="g" onclick="api('logout','POST').then(()=>location.reload())">Cerrar sesión</button>
 </aside>
 <main id="main"></main>
 </div>
